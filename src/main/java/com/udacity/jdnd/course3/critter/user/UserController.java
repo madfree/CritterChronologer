@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -26,6 +27,9 @@ public class UserController {
 
     @Autowired
     CustomerService customerService;
+
+    @Autowired
+    EmployeeService employeeService;
 
     @PostMapping("/customer")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
@@ -51,12 +55,14 @@ public class UserController {
 
     @PostMapping("/employee")
     public EmployeeDTO saveEmployee(@RequestBody EmployeeDTO employeeDTO) {
-        throw new UnsupportedOperationException();
+        Employee newEmployee = employeeService.saveEmployee(convertEmployeeDtoToEmployee(employeeDTO));
+        return convertEmployeeToEmployeeDto(newEmployee);
     }
 
     @PostMapping("/employee/{employeeId}")
     public EmployeeDTO getEmployee(@PathVariable long employeeId) {
-        throw new UnsupportedOperationException();
+        Employee employee = employeeService.findEmployeeById(employeeId);
+        return convertEmployeeToEmployeeDto(employee);
     }
 
     @PutMapping("/employee/{employeeId}")
@@ -72,6 +78,14 @@ public class UserController {
     private static CustomerDTO convertCustomerToCustomerDto(Customer customer) {
         CustomerDTO customerDto = new CustomerDTO();
         BeanUtils.copyProperties(customer, customerDto);
+        List<Long> petIds = new ArrayList<>();
+        List<Pet> pets = customer.getPets();
+        if (pets != null) {
+            for (Pet pet: pets) {
+                petIds.add(pet.getId());
+            }
+        }
+        customerDto.setPetIds(petIds);
         return customerDto;
     }
 
@@ -79,6 +93,18 @@ public class UserController {
         Customer customer = new Customer();
         BeanUtils.copyProperties(customerDto, customer);
         return customer;
+    }
+
+    private static Employee convertEmployeeDtoToEmployee(EmployeeDTO employeeDTO) {
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(employeeDTO, employee);
+        return employee;
+    }
+
+    private static EmployeeDTO convertEmployeeToEmployeeDto(Employee employee) {
+        EmployeeDTO employeeDto = new EmployeeDTO();
+        BeanUtils.copyProperties(employee, employeeDto);
+        return employeeDto;
     }
 
 }

@@ -12,8 +12,8 @@ public class CustomerService {
     @Autowired
     public CustomerRepository customerRepository;
 
-    public Optional<Customer> findById(Long customerId) {
-        return customerRepository.findById(customerId);
+    public Customer findById(Long customerId) {
+        return customerRepository.findById(customerId).get();
     }
 
     public Customer saveCustomer (Customer customer) {
