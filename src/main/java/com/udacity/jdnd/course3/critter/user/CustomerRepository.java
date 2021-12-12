@@ -9,6 +9,6 @@ import javax.transaction.Transactional;
 @Transactional
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-    Customer findByPetsId(Long id);
+    Customer findByPets_Id(Long id);
 
 }
