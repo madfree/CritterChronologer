@@ -1,7 +1,6 @@
 package com.udacity.jdnd.course3.critter.schedule;
 
 import com.udacity.jdnd.course3.critter.pet.Pet;
-import com.udacity.jdnd.course3.critter.user.Customer;
 import com.udacity.jdnd.course3.critter.user.Employee;
 import com.udacity.jdnd.course3.critter.user.EmployeeSkill;
 

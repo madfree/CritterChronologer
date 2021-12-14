@@ -25,13 +25,6 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String name, String phoneNumber, String notes, List<Pet> pets) {
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.notes = notes;
-        this.pets = pets;
-    }
-
     public long getId() {
         return id;
     }

@@ -7,16 +7,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 public class PetService {
 
     @Autowired
-    private PetRepository petRepository;
+    PetRepository petRepository;
 
     @Autowired
-    private CustomerRepository customerRepository;
+    CustomerRepository customerRepository;
 
     public List<Pet> findPetsByOwnerId(Long ownerId) {
         return petRepository.findAllByOwnerId(ownerId);
@@ -39,11 +38,7 @@ public class PetService {
     }
 
     public Pet getPet(long petId) {
-        if (petRepository.findById(petId).isPresent()) {
-            return petRepository.findById(petId).get();
-        } else {
-            throw new NoSuchElementException();
-        }
+        return petRepository.findById(petId).get();
 
     }
 

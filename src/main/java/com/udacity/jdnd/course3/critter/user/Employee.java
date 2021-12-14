@@ -30,12 +30,6 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String name, Set<EmployeeSkill> skills, Set<DayOfWeek> daysAvailable) {
-        this.name = name;
-        this.skills = skills;
-        this.daysAvailable = daysAvailable;
-    }
-
     public long getId() {
         return id;
     }

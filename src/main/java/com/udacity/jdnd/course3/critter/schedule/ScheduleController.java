@@ -19,22 +19,19 @@ import java.util.stream.Collectors;
 public class ScheduleController {
 
     @Autowired
-    private CustomerService customerService;
+    CustomerService customerService;
 
     @Autowired
-    private EmployeeService employeeService;
+    EmployeeService employeeService;
 
     @Autowired
-    private PetService petService;
+    PetService petService;
 
     @Autowired
-    private ScheduleService scheduleService;
+    ScheduleService scheduleService;
 
     @PostMapping
     public ScheduleDTO createSchedule(@RequestBody ScheduleDTO scheduleDTO) {
-        //Schedule newSchedule = scheduleService.createSchedule(convertScheduleDtoToSchedule(scheduleDTO));
-        //return convertScheduleToScheduleDto(newSchedule);
-
         Schedule newSchedule = new Schedule();
         BeanUtils.copyProperties(scheduleDTO, newSchedule);
         List <Long> employeeIds = scheduleDTO.getEmployeeIds();
@@ -61,9 +58,6 @@ public class ScheduleController {
 
     @GetMapping
     public List<ScheduleDTO> getAllSchedules() {
-        //List<Schedule> schedules = scheduleService.findAllSchedules();
-        //return getScheduleDTOS(schedules);
-
         List<Schedule> tmp = scheduleService.findAllSchedules();
         List<ScheduleDTO> ret = new ArrayList<>();
         ScheduleDTO newSchedule;
@@ -93,7 +87,6 @@ public class ScheduleController {
 
     @GetMapping("/employee/{employeeId}")
     public List<ScheduleDTO> getScheduleForEmployee(@PathVariable long employeeId) {
-        //Employee employee = employeeService.findEmployeeById(employeeId);
         List<Schedule> schedules = scheduleService.findScheduleForEmployee(employeeId);
         return getScheduleDTOS(schedules);
     }
@@ -112,7 +105,6 @@ public class ScheduleController {
 
     private Schedule convertScheduleDtoToSchedule(ScheduleDTO scheduleDTO) {
         Schedule schedule = new Schedule();
-        //BeanUtils.copyProperties(scheduleDTO, schedule);
 
         schedule.setId(scheduleDTO.getId());
         schedule.setDate(scheduleDTO.getDate());
@@ -139,7 +131,6 @@ public class ScheduleController {
 
     private ScheduleDTO convertScheduleToScheduleDto(Schedule schedule) {
         ScheduleDTO scheduleDto = new ScheduleDTO();
-        //BeanUtils.copyProperties(schedule, scheduleDto);
 
         scheduleDto.setId(schedule.getId());
         scheduleDto.setDate(schedule.getDate());

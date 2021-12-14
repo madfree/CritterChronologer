@@ -1,7 +1,6 @@
 package com.udacity.jdnd.course3.critter.schedule;
 
 import com.udacity.jdnd.course3.critter.pet.Pet;
-import com.udacity.jdnd.course3.critter.user.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +10,7 @@ import java.util.List;
 public class ScheduleService {
 
     @Autowired
-    private ScheduleRepository scheduleRepository;
+    ScheduleRepository scheduleRepository;
 
     public Schedule createSchedule(Schedule schedule) {
         return scheduleRepository.save(schedule);

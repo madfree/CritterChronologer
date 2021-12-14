@@ -2,7 +2,6 @@ package com.udacity.jdnd.course3.critter.pet;
 
 import com.udacity.jdnd.course3.critter.user.Customer;
 import com.udacity.jdnd.course3.critter.user.CustomerService;
-import com.udacity.jdnd.course3.critter.user.Employee;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +17,10 @@ import java.util.List;
 public class PetController {
 
     @Autowired
-    public PetService petService;
+    PetService petService;
 
     @Autowired
-    private CustomerService customerService;
+    CustomerService customerService;
 
     @PostMapping
     public PetDTO savePet(@RequestBody PetDTO petDTO) {
